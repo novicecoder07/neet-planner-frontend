@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEET AI Study Planner</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for a clean look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Custom styles for better visual feedback */
+        body { font-family: 'Inter', sans-serif; }
         .plan-card {
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -23,7 +18,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        /* Simple spinner animation */
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             width: 36px;
@@ -32,10 +26,7 @@
             border-left-color: #09f;
             animation: spin 1s ease infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -50,50 +41,41 @@
         <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
             <form id="planner-form">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Student Status -->
                     <div>
                         <label for="student_status" class="block text-sm font-medium text-gray-700 mb-1">Current Status</label>
-                        <select id="student_status" name="student_status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="student_status" name="student_status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                             <option value="11th">11th Grade</option>
                             <option value="12th" selected>12th Grade</option>
                             <option value="Dropper">Dropper</option>
                         </select>
                     </div>
-
-                    <!-- Coaching Method -->
                     <div>
                         <label for="coaching_method" class="block text-sm font-medium text-gray-700 mb-1">Coaching Method</label>
-                        <select id="coaching_method" name="coaching_method" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="coaching_method" name="coaching_method" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                             <option value="Self-Study">Self-Study</option>
                             <option value="Online Coaching">Online Coaching</option>
                             <option value="Offline Coaching" selected>Offline Coaching</option>
                         </select>
                     </div>
-
-                    <!-- Strong Subject -->
                     <div>
                         <label for="strong_subject" class="block text-sm font-medium text-gray-700 mb-1">Strongest Subject</label>
-                        <select id="strong_subject" name="strong_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="strong_subject" name="strong_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                             <option value="Physics">Physics</option>
                             <option value="Chemistry">Chemistry</option>
                             <option value="Biology" selected>Biology</option>
                         </select>
                     </div>
-
-                    <!-- Weak Subject -->
                     <div>
                         <label for="weak_subject" class="block text-sm font-medium text-gray-700 mb-1">Weakest Subject</label>
-                        <select id="weak_subject" name="weak_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="weak_subject" name="weak_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                             <option value="Physics" selected>Physics</option>
                             <option value="Chemistry">Chemistry</option>
                             <option value="Biology">Biology</option>
                         </select>
                     </div>
-
-                    <!-- Student Category -->
                     <div>
                         <label for="student_category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                        <select id="student_category" name="student_category" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <select id="student_category" name="student_category" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                             <option value="GN" selected>General (GN)</option>
                             <option value="EWS">EWS</option>
                             <option value="OBC">OBC</option>
@@ -102,8 +84,6 @@
                         </select>
                     </div>
                 </div>
-
-                <!-- Submit Button -->
                 <div class="mt-8 text-center">
                     <button type="submit" id="submit-button" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300">
                         Generate Plan
@@ -114,13 +94,14 @@
 
         <!-- Results Section -->
         <div id="results-container" class="mt-10">
-            <!-- Loading Spinner -->
             <div id="loader" class="hidden flex justify-center items-center my-10">
                 <div class="spinner"></div>
                 <p class="ml-4 text-gray-600">Generating your personalized plan...</p>
             </div>
-            <!-- Error Message Box -->
             <div id="error-box" class="hidden p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert"></div>
+            
+            <!-- NEW: Monthly Plan -->
+            <div id="monthly-plan-container" class="mb-10"></div>
             
             <!-- Weekly Schedule -->
             <div id="weekly-schedule-container" class="mb-10"></div>
@@ -131,20 +112,18 @@
     </div>
 
     <script>
-        // --- Configuration ---
         const API_URL = "https://neet-bot-service-940466989922.us-central1.run.app/generate-plan";
 
-        // --- DOM Element References ---
         const form = document.getElementById('planner-form');
         const submitButton = document.getElementById('submit-button');
         const loader = document.getElementById('loader');
         const errorBox = document.getElementById('error-box');
+        const monthlyContainer = document.getElementById('monthly-plan-container');
         const weeklyContainer = document.getElementById('weekly-schedule-container');
         const yearlyContainer = document.getElementById('yearly-plan-container');
 
-        // --- Event Listener for Form Submission ---
         form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default browser form submission
+            e.preventDefault();
             
             clearResults();
             errorBox.classList.add('hidden');
@@ -152,10 +131,8 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Generating...';
 
-            // --- Collect Form Data ---
             const formData = new FormData(form);
             const studentData = {
-                // *** CHANGE: Automatically use today's date ***
                 start_date: getTodayDateString(),
                 student_status: formData.get('student_status'),
                 coaching_method: formData.get('coaching_method'),
@@ -164,7 +141,6 @@
                 student_category: formData.get('student_category'),
             };
 
-            // --- API Call ---
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
@@ -179,6 +155,7 @@
 
                 const plan = await response.json();
                 
+                renderMonthlyPlan(plan.monthly_plan);
                 renderWeeklySchedule(plan.weekly_schedule);
                 renderYearlyPlan(plan.yearly_plan_summary);
 
@@ -192,14 +169,37 @@
             }
         });
 
-        // --- UI Rendering Functions ---
-
         /**
-         * Renders the 4-week schedule into its container.
-         * @param {object} scheduleData - The weekly schedule object from the API.
+         * NEW: Renders the monthly plan into its container.
          */
+        function renderMonthlyPlan(monthlyData) {
+            let html = `<h2 class="text-3xl font-bold mb-6 text-center">Your Monthly Roadmap</h2>`;
+            html += `<div class="space-y-6">`;
+
+            for (const month in monthlyData) {
+                html += `
+                    <div class="bg-white p-6 rounded-xl plan-card">
+                        <h3 class="text-xl font-semibold mb-4 text-indigo-600">${month}</h3>
+                        <ul class="space-y-3">`;
+                
+                monthlyData[month].forEach(chapter => {
+                    html += `
+                        <li class="flex justify-between items-center text-sm border-b border-gray-100 py-2">
+                            <div>
+                                <p class="font-medium">${chapter['Chapter Name']}</p>
+                                <p class="text-xs text-gray-500">${chapter.Subject}</p>
+                            </div>
+                            <span class="font-semibold text-gray-700">${chapter.Allocated_Hours.toFixed(1)} hrs</span>
+                        </li>`;
+                });
+                html += `</ul></div>`;
+            }
+            html += `</div>`;
+            monthlyContainer.innerHTML = html;
+        }
+
         function renderWeeklySchedule(scheduleData) {
-            let html = `<h2 class="text-3xl font-bold mb-6 text-center">Your First 4 Weeks</h2>`;
+            let html = `<h2 class="text-3xl font-bold mb-6 mt-12 text-center">Your First 4 Weeks</h2>`;
             html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
             
             for (const week in scheduleData) {
@@ -220,17 +220,12 @@
                             </li>`;
                     }
                 });
-
                 html += `</ul></div>`;
             }
             html += `</div>`;
             weeklyContainer.innerHTML = html;
         }
 
-        /**
-         * Renders the yearly plan summary into a table.
-         * @param {Array} summaryData - The array of chapter objects from the API.
-         */
         function renderYearlyPlan(summaryData) {
             let html = `
                 <h2 class="text-3xl font-bold mb-6 mt-12 text-center">Yearly Plan Summary (By Priority)</h2>
@@ -241,8 +236,6 @@
                                 <th scope="col" class="px-6 py-3">Chapter Name</th>
                                 <th scope="col" class="px-6 py-3">Subject</th>
                                 <th scope="col" class="px-6 py-3">Total Hours</th>
-                                <th scope="col" class="px-6 py-3">Theory Hours</th>
-                                <th scope="col" class="px-6 py-3">Practice Hours</th>
                             </tr>
                         </thead>
                         <tbody>`;
@@ -253,58 +246,37 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${chapter['Chapter Name']}</th>
                         <td class="px-6 py-4">${chapter.Subject}</td>
                         <td class="px-6 py-4 font-semibold">${chapter.Allocated_Hours.toFixed(2)}</td>
-                        <td class="px-6 py-4">${chapter.theory_hours.toFixed(2)}</td>
-                        <td class="px-6 py-4">${chapter.practice_hours.toFixed(2)}</td>
                     </tr>`;
             });
-
             html += `</tbody></table></div>`;
             yearlyContainer.innerHTML = html;
         }
 
-        // --- Helper Functions ---
-
-        /**
-         * Clears all previously rendered results.
-         */
         function clearResults() {
+            monthlyContainer.innerHTML = '';
             weeklyContainer.innerHTML = '';
             yearlyContainer.innerHTML = '';
         }
 
-        /**
-         * Displays an error message to the user.
-         * @param {string} message - The error message to show.
-         */
         function showError(message) {
             errorBox.textContent = message;
             errorBox.classList.remove('hidden');
         }
 
-        /**
-         * Formats minutes into a more readable "Xh Ym" format.
-         * @param {number} totalMinutes - The number of minutes to format.
-         */
         function formatMinutes(totalMinutes) {
-            if (totalMinutes < 60) {
-                return `${totalMinutes}m`;
-            }
+            if (totalMinutes < 60) return `${totalMinutes}m`;
             const hours = Math.floor(totalMinutes / 60);
             const minutes = totalMinutes % 60;
             return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
         }
 
-        /**
-         * *** NEW: Helper function to get today's date in YYYY-MM-DD format ***
-         */
         function getTodayDateString() {
             const today = new Date();
             const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+            const month = String(today.getMonth() + 1).padStart(2, '0');
             const day = String(today.getDate()).padStart(2, '0');
             return `${year}-${month}-${day}`;
         }
-
     </script>
 </body>
 </html>
