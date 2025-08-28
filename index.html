@@ -100,13 +100,8 @@
             </div>
             <div id="error-box" class="hidden p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert"></div>
             
-            <!-- NEW: Monthly Plan -->
             <div id="monthly-plan-container" class="mb-10"></div>
-            
-            <!-- Weekly Schedule -->
             <div id="weekly-schedule-container" class="mb-10"></div>
-            
-            <!-- Yearly Plan Summary -->
             <div id="yearly-plan-container"></div>
         </div>
     </div>
@@ -170,30 +165,38 @@
         });
 
         /**
-         * NEW: Renders the monthly plan into its container.
+         * Renders the monthly plan into its container with a 3-column layout.
          */
         function renderMonthlyPlan(monthlyData) {
             let html = `<h2 class="text-3xl font-bold mb-6 text-center">Your Monthly Roadmap</h2>`;
-            html += `<div class="space-y-6">`;
+            html += `<div class="space-y-8">`;
 
-            for (const month in monthlyData) {
+            monthlyData.forEach(monthData => {
                 html += `
                     <div class="bg-white p-6 rounded-xl plan-card">
-                        <h3 class="text-xl font-semibold mb-4 text-indigo-600">${month}</h3>
-                        <ul class="space-y-3">`;
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-600">${monthData.month}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                `;
                 
-                monthlyData[month].forEach(chapter => {
-                    html += `
-                        <li class="flex justify-between items-center text-sm border-b border-gray-100 py-2">
-                            <div>
-                                <p class="font-medium">${chapter['Chapter Name']}</p>
-                                <p class="text-xs text-gray-500">${chapter.Subject}</p>
-                            </div>
-                            <span class="font-semibold text-gray-700">${chapter.Allocated_Hours.toFixed(1)} hrs</span>
-                        </li>`;
-                });
-                html += `</ul></div>`;
-            }
+                // Create columns for each subject
+                for (const subject of ['Physics', 'Chemistry', 'Biology']) {
+                    html += `<div>
+                                <h4 class="font-bold text-lg mb-2 text-gray-700">${subject}</h4>`;
+                    
+                    if (monthData.subjects[subject] && monthData.subjects[subject].length > 0) {
+                        html += `<ul class="space-y-2 list-disc list-inside text-sm text-gray-600">`;
+                        monthData.subjects[subject].forEach(chapter => {
+                            html += `<li>${chapter}</li>`;
+                        });
+                        html += `</ul>`;
+                    } else {
+                        html += `<p class="text-sm text-gray-400">No chapters this month.</p>`;
+                    }
+                    html += `</div>`;
+                }
+
+                html += `</div></div>`;
+            });
             html += `</div>`;
             monthlyContainer.innerHTML = html;
         }
