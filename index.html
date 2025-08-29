@@ -39,6 +39,8 @@
     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
       <form id="planner-form">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Current Status -->
           <div>
             <label for="student_status" class="block text-sm font-medium text-gray-700 mb-1">Current Status</label>
             <select id="student_status" name="student_status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
@@ -47,6 +49,8 @@
               <option value="Dropper">Dropper</option>
             </select>
           </div>
+
+          <!-- Strongest Subject -->
           <div>
             <label for="strong_subject" class="block text-sm font-medium text-gray-700 mb-1">Strongest Subject</label>
             <select id="strong_subject" name="strong_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
@@ -55,6 +59,8 @@
               <option value="Biology" selected>Biology</option>
             </select>
           </div>
+
+          <!-- Weakest Subject -->
           <div>
             <label for="weak_subject" class="block text-sm font-medium text-gray-700 mb-1">Weakest Subject</label>
             <select id="weak_subject" name="weak_subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
@@ -63,6 +69,28 @@
               <option value="Biology">Biology</option>
             </select>
           </div>
+
+          <!-- Coaching Method -->
+          <div>
+            <label for="coaching_method" class="block text-sm font-medium text-gray-700 mb-1">Coaching Method</label>
+            <select id="coaching_method" name="coaching_method" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+              <option value="Self-Study" selected>Self-Study</option>
+              <option value="Online Coaching">Online Coaching</option>
+              <option value="Offline Coaching">Offline Coaching</option>
+            </select>
+          </div>
+
+          <!-- Student Category -->
+          <div>
+            <label for="student_category" class="block text-sm font-medium text-gray-700 mb-1">Student Category</label>
+            <select id="student_category" name="student_category" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+              <option value="General" selected>General</option>
+              <option value="OBC">OBC</option>
+              <option value="SC">SC</option>
+              <option value="ST">ST</option>
+            </select>
+          </div>
+
         </div>
         <div class="mt-8 text-center">
           <button type="submit" id="submit-button" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300">
@@ -110,8 +138,10 @@
         start_date: getTodayDateString(),
         target_date: getTargetDate(150), // ~5 months ahead
         student_status: formData.get('student_status'),
-        strong_subjects: [formData.get('strong_subject')],
-        weak_subjects: [formData.get('weak_subject')]
+        strong_subject: formData.get('strong_subject'),
+        weak_subject: formData.get('weak_subject'),
+        coaching_method: formData.get('coaching_method'),
+        student_category: formData.get('student_category')
       };
 
       try {
